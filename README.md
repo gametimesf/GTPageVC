@@ -8,8 +8,8 @@ A simple replacement for UIPageViewController
 
 ### Carthage
 
-    github "gametimesf/GTPageVC" == 1.0
+    github "gametimesf/GTPageVC" == 1.1
 
 ## Building
 
-GTPageVC 1.0 requires Swift 3
+GTPageVC 1.1 requires Swift 3
