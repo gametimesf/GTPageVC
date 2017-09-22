@@ -20,16 +20,17 @@ open class GTPageVC: UIViewController {
     
     open weak var pageDelegate : GTPageVCDelegate?
     
-    open fileprivate(set) lazy var collectionView : UICollectionView = { [unowned self] in
+    fileprivate(set) lazy var collectionView : UICollectionView = { [unowned self] in
         let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.isPagingEnabled = true
         collectionView.delegate = self
+        collectionView.backgroundColor = .clear
         collectionView.register(GTPageCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: String(describing: GTPageCollectionViewCell.self))
         return collectionView
-        }()
+    }()
     
     fileprivate var itemSpacing : CGFloat = 8.0
     
@@ -43,13 +44,14 @@ open class GTPageVC: UIViewController {
     
     //MARK: Selection
     
-    open func setViewControllers(_ viewControllers : [UIViewController], selectedIndex index : Int = 0) {
+    open func set(viewControllers : [UIViewController], selectedIndex index : Int = 0) {
         guard viewIfLoaded != nil else { return }
+
         self.viewControllers = viewControllers
+
         collectionView.reloadData()
-        DispatchQueue.main.async { [weak self] in
-            self?.scrollToVCAtIndex(index, animated: false)
-        }
+
+        scroll(index: index, animated: false)
     }
     
     open func selectedVC() -> UIViewController? {
@@ -62,12 +64,10 @@ open class GTPageVC: UIViewController {
         return viewControllers.index(of: selectedVC)
     }
     
-    open func scrollToVCAtIndex(_ index : Int, animated : Bool) {
+    open func scroll(index : Int, animated : Bool) {
         guard index < viewControllers.count else { return }
         collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: animated)
     }
-    
-    //MARK: Data
     
     //MARK: VC Management
     
