@@ -20,7 +20,7 @@ open class GTPageVC: UIViewController {
     
     open weak var pageDelegate : GTPageVCDelegate?
     
-    fileprivate(set) lazy var collectionView : UICollectionView = { [unowned self] in
+    open fileprivate(set) lazy var collectionView : UICollectionView = { [unowned self] in
         let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: self.layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
