@@ -10,7 +10,6 @@
 		3A3030F21DC94BCB00A05BD5 /* GTPageVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A3030F01DC94BCB00A05BD5 /* GTPageVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A5D6CFF1DC95A78009723D5 /* GTPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5D6CFC1DC95A78009723D5 /* GTPageCollectionViewCell.swift */; };
 		3A5D6D001DC95A78009723D5 /* GTPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5D6CFD1DC95A78009723D5 /* GTPageVC.swift */; };
-		3A5D6D051DC95BCD009723D5 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5D6D041DC95BCD009723D5 /* SnapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,7 +18,6 @@
 		3A3030F11DC94BCB00A05BD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A5D6CFC1DC95A78009723D5 /* GTPageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A5D6CFD1DC95A78009723D5 /* GTPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GTPageVC.swift; sourceTree = "<group>"; };
-		3A5D6D041DC95BCD009723D5 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +25,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5D6D051DC95BCD009723D5 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,21 +50,12 @@
 		3A3030EF1DC94BCB00A05BD5 /* GTPageVC */ = {
 			isa = PBXGroup;
 			children = (
-				3A5D6D011DC95B9E009723D5 /* Dependencies */,
 				3A5D6CFC1DC95A78009723D5 /* GTPageCollectionViewCell.swift */,
 				3A5D6CFD1DC95A78009723D5 /* GTPageVC.swift */,
 				3A3030F01DC94BCB00A05BD5 /* GTPageVC.h */,
 				3A3030F11DC94BCB00A05BD5 /* Info.plist */,
 			);
 			path = GTPageVC;
-			sourceTree = "<group>";
-		};
-		3A5D6D011DC95B9E009723D5 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				3A5D6D041DC95BCD009723D5 /* SnapKit.framework */,
-			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

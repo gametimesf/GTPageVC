@@ -7,12 +7,10 @@
 //
 
 import UIKit
-import SnapKit
 
 public protocol GTPageVCDelegate : class {
     func didScroll(toVC vc : UIViewController, index : Int)
 }
-
 
 open class GTPageVC: UIViewController {
     
@@ -74,7 +72,7 @@ open class GTPageVC: UIViewController {
     fileprivate func addPageChild(fromCell cell : GTPageCollectionViewCell) {
         guard let containedVC = cell.containedVC  else { return }
         cell.contentView.addSubview(containedVC.view)
-        containedVC.view.snp.makeConstraints({ (make) in make.edges.equalTo(cell.contentView) })
+        containedVC.view.bindToSuperView()
         addChildViewController(containedVC)
         containedVC.didMove(toParentViewController: self)
     }
@@ -104,10 +102,55 @@ open class GTPageVC: UIViewController {
         
         guard collectionView.superview == nil else { return }
         view.addSubview(collectionView)
-        collectionView.snp.makeConstraints({ (make) in
-            make.edges.equalTo(self.view).inset(UIEdgeInsets(top: 0, left: -self.itemSpacing/2.0, bottom: 0, right: -self.itemSpacing/2.0))
-        })
+
+        collectionView.bindToSuperView(
+            edgeInsets: UIEdgeInsets(
+                top: 0,
+                left: -itemSpacing/2.0,
+                bottom: 0,
+                right: -itemSpacing/2.0
+            )
+        )
+
         collectionView.reloadData()
+    }
+}
+
+private extension UIView {
+    func bindToSuperView(edgeInsets: UIEdgeInsets = .zero) {
+        guard let superview = self.superview else {
+            return
+        }
+
+        translatesAutoresizingMaskIntoConstraints = false
+
+        superview.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-left-[subview]-right-|",
+                options: [],
+                metrics: [
+                    "left": edgeInsets.left,
+                    "right": edgeInsets.right
+                ],
+                views: [
+                    "subview": self
+                ]
+            )
+        )
+
+        superview.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-top-[subview]-bottom-|",
+                options: [],
+                metrics: [
+                    "top": edgeInsets.top,
+                    "bottom": edgeInsets.bottom
+                ],
+                views: [
+                    "subview": self
+                ]
+            )
+        )
     }
 }
 
